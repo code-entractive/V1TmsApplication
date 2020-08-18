@@ -1,298 +1,516 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-customer-heading" jhiTranslate="tmsV1ApplicationApp.customer.home.createOrEditLabel">Create or edit a Customer</h2>
+  <div class="col-lg-8 col-md-12 col-sm-12">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-customer-heading" jhiTranslate="tmsV1ApplicationApp.customer.home.createOrEditLabel">Create or edit a Customer</h2>
 
-            <div>
-                <jhi-alert-error></jhi-alert-error>
+      <div>
+        <jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
+        <div class="form-group" [hidden]="!editForm.get('id')!.value">
+          <label for="id" jhiTranslate="global.field.id">ID</label>
+          <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+        </div>
+        <div class="my-2">
+          <span class="lable_name"> Company</span>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.company" for="field_company"></label> -->
+            <input type="text" class="form-control" name="company" id="field_company" placeholder="Company" formControlName="company" />
+          </div>
+        </div>
+        <div class="my-2">
+          <span class="lable_name">Primary Contact</span>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.firstName" for="field_firstName">First Name</label> -->
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              id="field_firstName"
+              placeholder="First Name"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastName" for="field_lastName">Last Name</label> -->
+            <input
+              type="text"
+              class="form-control"
+              name="lastName"
+              id="field_lastName"
+              placeholder="Last Name"
+              formControlName="lastName"
+            />
+          </div>
+        </div>
+        <div class="my-2">
+          <span class="lable_name">Contact Designation</span>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.contactDesignation" for="field_contactDesignation"
+            >Contact Designation</label 
+          > -->
+            <select class="form-control" name="contactDesignation" formControlName="contactDesignation" id="field_contactDesignation">
+              <option value="MANAGER">{{ 'tmsV1ApplicationApp.Designation.MANAGER' | translate }}</option>
+              <option value="ACCOUNTANT">{{ 'tmsV1ApplicationApp.Designation.ACCOUNTANT' | translate }} </option>
+              <option value="OWNER">{{ 'tmsV1ApplicationApp.Designation.OWNER' | translate }}</option>
+              <option value="DISPATCHER">{{ 'tmsV1ApplicationApp.Designation.DISPATCHER' | translate }} </option>
+            </select>
+          </div>
+        </div>
+        <div class="my-2">
+          <span class="lable_name">Contect-info</span>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.email" for="field_email">Email</label> -->
+            <input type="text" class="form-control" name="email" id="field_email" placeholder="Email" formControlName="email" />
+          </div>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.phoneNumber" for="field_phoneNumber"
+            >Phone Number</label
+          > -->
+            <input
+              type="number"
+              class="form-control"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              id="field_phoneNumber"
+              formControlName="phoneNumber"
+            />
+          </div>
+          <div class="form-group">
+            <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.phoneNumberExtention"
+            for="field_phoneNumberExtention"
+            >Phone Number Extention</label
+          > -->
+            <input
+              type="number"
+              placeholder="Phone No. Extention"
+              class="form-control"
+              name="phoneNumberExtention"
+              id="field_phoneNumberExtention"
+              formControlName="phoneNumberExtention"
+            />
+          </div>
+        </div>
+        <div class="my-2">
+          <span class="lable_name">Preffred Contact Type</span>
+          <div class="form-group">
+            <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.preffredContactType" for="field_preffredContactType"
+            >Preffred Contact Type</label
+          > -->
+            <select class="form-control" name="preffredContactType" formControlName="preffredContactType" id="field_preffredContactType">
+              <option value="PHONE">{{ 'tmsV1ApplicationApp.PreffredContactType.PHONE' | translate }}</option>
+              <option value="EMAIL">{{ 'tmsV1ApplicationApp.PreffredContactType.EMAIL' | translate }}</option>
+              <option value="FAX">{{ 'tmsV1ApplicationApp.PreffredContactType.FAX' | translate }}</option>
+              <option value="MAIL">{{ 'tmsV1ApplicationApp.PreffredContactType.MAIL' | translate }}</option>
+            </select>
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.company" for="field_company">Company</label>
-                    <input type="text" class="form-control" name="company" id="field_company"
-                           formControlName="company"/>
-                </div>
+         <div class="my-2">
+          <span class="lable_name">Website</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.website" for="field_website">Website</label> -->
+          <input type="text" class="form-control field_website" name="website" id="field_website" formControlName="website" />
+        </div>
+         </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.firstName" for="field_firstName">First Name</label>
-                    <input type="text" class="form-control" name="firstName" id="field_firstName"
-                           formControlName="firstName"/>
-                </div>
+         <div class="my-2">
+          <span class="lable_name">Alternate -info</span>
+        <div class="form-group">
+          <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.alternateContactPerson"
+            for="field_alternateContactPerson"
+            >Alternate Contact Person</label
+          > -->
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Alternate Contact Person"
+            name="alternateContactPerson"
+            id="field_alternateContactPerson"
+            formControlName="alternateContactPerson"
+          />
+        </div>
+          <div class="form-group">
+          <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.alternateContactNumber"
+            for="field_alternateContactNumber"
+            >Alternate Contact Number</label
+          > -->
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Alternate Contact Number"
+            name="alternateContactNumber"
+            id="field_alternateContactNumber"
+            formControlName="alternateContactNumber"
+          />
+        </div>
+          <div class="form-group">
+          <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.alternatePhoneNumberExtention"
+            for="field_alternatePhoneNumberExtention"
+            >Alternate Phone Number Extention</label
+          > -->
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Alternate Phone No. Extention"
+            name="alternatePhoneNumberExtention"
+            id="field_alternatePhoneNumberExtention"
+            formControlName="alternatePhoneNumberExtention"
+          />
+        </div>
+        <div class="form-group">
+          <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.alternateContactEmail"
+            for="field_alternateContactEmail"
+            >Alternate Contact Email</label
+          > -->
+          <input
+            type="text"
+            placeholder="Alternate Contact Email"
+            class="form-control"
+            name="alternateContactEmail"
+            id="field_alternateContactEmail"
+            formControlName="alternateContactEmail"
+          />
+        </div>
+         </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastName" for="field_lastName">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" id="field_lastName"
-                           formControlName="lastName"/>
-                </div>
+      
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.contactDesignation" for="field_contactDesignation">Contact Designation</label>
-                    <select class="form-control" name="contactDesignation" formControlName="contactDesignation" id="field_contactDesignation">
-                        <option value="MANAGER">{{ 'tmsV1ApplicationApp.Designation.MANAGER' | translate }}</option>
-                        <option value="ACCOUNTANT">{{ 'tmsV1ApplicationApp.Designation.ACCOUNTANT' | translate }}</option>
-                        <option value="OWNER">{{ 'tmsV1ApplicationApp.Designation.OWNER' | translate }}</option>
-                        <option value="DISPATCHER">{{ 'tmsV1ApplicationApp.Designation.DISPATCHER' | translate }}</option>
-                    </select>
-                </div>
+    
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.email" for="field_email">Email</label>
-                    <input type="text" class="form-control" name="email" id="field_email"
-                           formControlName="email"/>
-                </div>
+        <div class="my-2">
+          <span class="lable_name">Preferred Contact Time</span>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.phoneNumber" for="field_phoneNumber">Phone Number</label>
-                    <input type="number" class="form-control" name="phoneNumber" id="field_phoneNumber"
-                           formControlName="phoneNumber"/>
-                </div>
+        <div class="form-group">
+          <!-- <label
+            class="form-control-label"
+            jhiTranslate="tmsV1ApplicationApp.customer.preferredContactTime"
+            for="field_preferredContactTime"
+            >Preferred Contact Time</label
+          > -->
+          <div class="d-flex">
+            <input
+              id="field_preferredContactTime"
+              type="datetime-local"
+              class="form-control"
+              name="preferredContactTime"
+              formControlName="preferredContactTime"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+         <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.fax" for="field_fax">Fax</label> -->
+          <input type="number" class="form-control" name="fax" id="field_fax" placeholder="Fax" formControlName="fax" />
+        </div>
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.phoneNumberExtention" for="field_phoneNumberExtention">Phone Number Extention</label>
-                    <input type="number" class="form-control" name="phoneNumberExtention" id="field_phoneNumberExtention"
-                           formControlName="phoneNumberExtention"/>
-                </div>
+       
+  <div class="my-2">
+          <span class="lable_name">Address</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.address" for="field_address">Address</label> -->
+          <input type="text" class="form-control" name="address" id="field_address" placeholder="Complete Address" formControlName="address" />
+        </div>
+  </div>
+ <div class="my-2">
+          <span class="lable_name"></span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.streetAddress" for="field_streetAddress"
+            >Street Address</label
+          > -->
+          <input type="text" class="form-control" name="streetAddress" placeholder="Street Address" id="field_streetAddress" formControlName="streetAddress" />
+        </div>
+         <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.city" for="field_city">City</label> -->
+          <input type="text" class="form-control" name="city" placeholder="City" id="field_city" formControlName="city" />
+        </div>
+          <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.stateProvince" for="field_stateProvince"
+            >State Province</label
+          > -->
+          <input type="text" class="form-control" name="stateProvince" placeholder="State Province" id="field_stateProvince" formControlName="stateProvince" />
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.preffredContactType" for="field_preffredContactType">Preffred Contact Type</label>
-                    <select class="form-control" name="preffredContactType" formControlName="preffredContactType" id="field_preffredContactType">
-                        <option value="PHONE">{{ 'tmsV1ApplicationApp.PreffredContactType.PHONE' | translate }}</option>
-                        <option value="EMAIL">{{ 'tmsV1ApplicationApp.PreffredContactType.EMAIL' | translate }}</option>
-                        <option value="FAX">{{ 'tmsV1ApplicationApp.PreffredContactType.FAX' | translate }}</option>
-                        <option value="MAIL">{{ 'tmsV1ApplicationApp.PreffredContactType.MAIL' | translate }}</option>
-                    </select>
-                </div>
+       
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.website" for="field_website">Website</label>
-                    <input type="text" class="form-control" name="website" id="field_website"
-                           formControlName="website"/>
-                </div>
+ </div>
+       
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.alternateContactPerson" for="field_alternateContactPerson">Alternate Contact Person</label>
-                    <input type="text" class="form-control" name="alternateContactPerson" id="field_alternateContactPerson"
-                           formControlName="alternateContactPerson"/>
-                </div>
+  <div class="my-2">
+          <span class="lable_name">Country</span>
+       <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.country" for="field_country">Country</label> -->
+          <select class="form-control" name="country" formControlName="country" id="field_country">
+            <option value="USA">{{ 'tmsV1ApplicationApp.CountryEnum.USA' | translate }}</option>
+            <option value="CANADA">{{ 'tmsV1ApplicationApp.CountryEnum.CANADA' | translate }}</option>
+            <option value="MEXICO">{{ 'tmsV1ApplicationApp.CountryEnum.MEXICO' | translate }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.postalCode" for="field_postalCode"
+            >Postal Code</label
+          > -->
+          <input type="text" class="form-control" name="postalCode" placeholder="Postal Code" id="field_postalCode" formControlName="postalCode" />
+        </div>
+  </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.alternateContactNumber" for="field_alternateContactNumber">Alternate Contact Number</label>
-                    <input type="number" class="form-control" name="alternateContactNumber" id="field_alternateContactNumber"
-                           formControlName="alternateContactNumber"/>
-                </div>
+  
+  <div class="my-2">
+          <span class="lable_name">Other-info</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.dot" for="field_dot">Dot</label> -->
+          <input type="text" class="form-control" placeholder="Dot" name="dot" id="field_dot" formControlName="dot" />
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.alternatePhoneNumberExtention" for="field_alternatePhoneNumberExtention">Alternate Phone Number Extention</label>
-                    <input type="number" class="form-control" name="alternatePhoneNumberExtention" id="field_alternatePhoneNumberExtention"
-                           formControlName="alternatePhoneNumberExtention"/>
-                </div>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.mc" for="field_mc">Mc</label> -->
+          <input type="number" class="form-control" placeholder="Mc" name="mc" id="field_mc" formControlName="mc" />
+        </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.alternateContactEmail" for="field_alternateContactEmail">Alternate Contact Email</label>
-                    <input type="text" class="form-control" name="alternateContactEmail" id="field_alternateContactEmail"
-                           formControlName="alternateContactEmail"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.preferredContactTime" for="field_preferredContactTime">Preferred Contact Time</label>
-                    <div class="d-flex">
-                        <input id="field_preferredContactTime" type="datetime-local" class="form-control" name="preferredContactTime" formControlName="preferredContactTime" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.fax" for="field_fax">Fax</label>
-                    <input type="number" class="form-control" name="fax" id="field_fax"
-                           formControlName="fax"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.address" for="field_address">Address</label>
-                    <input type="text" class="form-control" name="address" id="field_address"
-                           formControlName="address"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.streetAddress" for="field_streetAddress">Street Address</label>
-                    <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
-                           formControlName="streetAddress"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.city" for="field_city">City</label>
-                    <input type="text" class="form-control" name="city" id="field_city"
-                           formControlName="city"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.stateProvince" for="field_stateProvince">State Province</label>
-                    <input type="text" class="form-control" name="stateProvince" id="field_stateProvince"
-                           formControlName="stateProvince"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.country" for="field_country">Country</label>
-                    <select class="form-control" name="country" formControlName="country" id="field_country">
-                        <option value="USA">{{ 'tmsV1ApplicationApp.CountryEnum.USA' | translate }}</option>
-                        <option value="CANADA">{{ 'tmsV1ApplicationApp.CountryEnum.CANADA' | translate }}</option>
-                        <option value="MEXICO">{{ 'tmsV1ApplicationApp.CountryEnum.MEXICO' | translate }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.postalCode" for="field_postalCode">Postal Code</label>
-                    <input type="text" class="form-control" name="postalCode" id="field_postalCode"
-                           formControlName="postalCode"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.dot" for="field_dot">Dot</label>
-                    <input type="text" class="form-control" name="dot" id="field_dot"
-                           formControlName="dot"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.mc" for="field_mc">Mc</label>
-                    <input type="number" class="form-control" name="mc" id="field_mc"
-                           formControlName="mc"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.taxId" for="field_taxId">Tax Id</label>
-                    <input type="text" class="form-control" name="taxId" id="field_taxId"
-                           formControlName="taxId"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.companyLogo" for="field_companyLogo">Company Logo</label>
-                    <div>
-                        <img [src]="'data:' + editForm.get('companyLogoContentType')!.value + ';base64,' + editForm.get('companyLogo')!.value" style="max-height: 100px;" *ngIf="editForm.get('companyLogo')!.value" alt="customer image"/>
-                        <div *ngIf="editForm.get('companyLogo')!.value" class="form-text text-danger clearfix">
-                            <span class="pull-left">{{ editForm.get('companyLogoContentType')!.value }}, {{ byteSize(editForm.get('companyLogo')!.value) }}</span>
-                            <button type="button" (click)="clearInputImage('companyLogo', 'companyLogoContentType', 'file_companyLogo')" class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_companyLogo" (change)="setFileData($event, 'companyLogo', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="companyLogo" id="field_companyLogo"
-                           formControlName="companyLogo"/>
-                    <input type="hidden" class="form-control" name="companyLogoContentType" id="field_companyLogoContentType"
-                           formControlName="companyLogoContentType" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.customerSince" for="field_customerSince">Customer Since</label>
-                    <div class="input-group">
-                        <input id="field_customerSince" type="text" class="form-control" name="customerSince" ngbDatepicker #customerSinceDp="ngbDatepicker" formControlName="customerSince"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="customerSinceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.notes" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="field_notes"
-                           formControlName="notes"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.contract" for="field_contract">Contract</label>
-                    <div>
-                        <div *ngIf="editForm.get('contract')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('contractContentType')!.value, editForm.get('contract')!.value)" jhiTranslate="entity.action.open">open</a><br>
-                            <span class="pull-left">{{ editForm.get('contractContentType')!.value }}, {{ byteSize(editForm.get('contract')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({contract: null});editForm.patchValue({contractContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_contract" (change)="setFileData($event, 'contract', false)" jhiTranslate="entity.action.addblob"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="contract" id="field_contract"
-                           formControlName="contract"/>
-                    <input type="hidden" class="form-control" name="contractContentType" id="field_contractContentType"
-                           formControlName="contractContentType" />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.status" for="field_status">Status</label>
-                    <select class="form-control" name="status" formControlName="status" id="field_status">
-                        <option value="ACTIVE">{{ 'tmsV1ApplicationApp.ToggleStatus.ACTIVE' | translate }}</option>
-                        <option value="INACTIVE">{{ 'tmsV1ApplicationApp.ToggleStatus.INACTIVE' | translate }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.preffredCurrency" for="field_preffredCurrency">Preffred Currency</label>
-                    <select class="form-control" name="preffredCurrency" formControlName="preffredCurrency" id="field_preffredCurrency">
-                        <option value="USD">{{ 'tmsV1ApplicationApp.CURRENCY.USD' | translate }}</option>
-                        <option value="CAD">{{ 'tmsV1ApplicationApp.CURRENCY.CAD' | translate }}</option>
-                        <option value="INR">{{ 'tmsV1ApplicationApp.CURRENCY.INR' | translate }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.payterms" for="field_payterms">Payterms</label>
-                    <input type="text" class="form-control" name="payterms" id="field_payterms"
-                           formControlName="payterms"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.timeZone" for="field_timeZone">Time Zone</label>
-                    <div class="d-flex">
-                        <input id="field_timeZone" type="datetime-local" class="form-control" name="timeZone" formControlName="timeZone" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.createdDate" for="field_createdDate">Created Date</label>
-                    <div class="d-flex">
-                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.createdBy" for="field_createdBy">Created By</label>
-                    <input type="text" class="form-control" name="createdBy" id="field_createdBy"
-                           formControlName="createdBy"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastModifiedDate" for="field_lastModifiedDate">Last Modified Date</label>
-                    <div class="d-flex">
-                        <input id="field_lastModifiedDate" type="datetime-local" class="form-control" name="lastModifiedDate" formControlName="lastModifiedDate" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
-                    <input type="text" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"
-                           formControlName="lastModifiedBy"/>
-                </div>
-
-                <div class="form-group">
-                    <label jhiTranslate="tmsV1ApplicationApp.customer.charge" for="field_charges">Charge</label>
-                    <select class="form-control" id="field_charges" multiple name="charges" formControlName="charges">
-                        <option [ngValue]="getSelected(editForm.get('charges')!.value, productItemOption)" *ngFor="let productItemOption of productitems; trackBy: trackById">{{ productItemOption.itemName }}</option>
-                    </select>
-                </div>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.taxId" for="field_taxId">Tax Id</label> -->
+          <input type="text" class="form-control" name="taxId" placeholder="Tax Id" id="field_taxId" formControlName="taxId" />
+        </div>
+  </div>
+  <div class="my-2">
+          <span class="lable_name">Company Logo</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.companyLogo" for="field_companyLogo"
+            >Company Logo</label
+          > -->
+          <div>
+            <img
+              [src]="'data:' + editForm.get('companyLogoContentType')!.value + ';base64,' + editForm.get('companyLogo')!.value"
+              style="max-height: 100px;"
+              *ngIf="editForm.get('companyLogo')!.value"
+              alt="customer image"
+            />
+            <div *ngIf="editForm.get('companyLogo')!.value" class="form-text text-danger clearfix">
+              <span class="pull-left"
+                >{{ editForm.get('companyLogoContentType')!.value }}, {{ byteSize(editForm.get('companyLogo')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="clearInputImage('companyLogo', 'companyLogoContentType', 'file_companyLogo')"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
             </div>
+            <input
+              type="file"
+              id="file_companyLogo"
+              (change)="setFileData($event, 'companyLogo', true)"
+              accept="image/*"
+              jhiTranslate="entity.action.addimage"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="companyLogo" id="field_companyLogo" formControlName="companyLogo" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="companyLogoContentType"
+            id="field_companyLogoContentType"
+            formControlName="companyLogoContentType"
+          />
+        </div>
+  </div>
 
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+   <div class="my-2">
+          <span class="lable_name">Customer Since</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.customerSince" for="field_customerSince"
+            >Customer Since</label
+          > -->
+          <div class="input-group">
+            <input
+              id="field_customerSince"
+              type="text"
+              class="form-control"
+              name="customerSince"
+              ngbDatepicker
+              #customerSinceDp="ngbDatepicker"
+              formControlName="customerSince"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="customerSinceDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.notes" for="field_notes">Notes</label> -->
+          <input type="text" class="form-control" placeholder="Notes" name="notes" id="field_notes" formControlName="notes" />
+        </div>
+   </div>
+
+     <div class="my-2">
+          <span class="lable_name">Contract</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.contract" for="field_contract">Contract</label> -->
+          <div>
+            <div *ngIf="editForm.get('contract')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-left"
+                (click)="openFile(editForm.get('contractContentType')!.value, editForm.get('contract')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-left"
+                >{{ editForm.get('contractContentType')!.value }}, {{ byteSize(editForm.get('contract')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ contract: null }); editForm.patchValue({ contractContentType: null })"
+                class="btn btn-secondary btn-xs pull-right"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
             </div>
-        </form>
+            <input type="file" id="file_contract" (change)="setFileData($event, 'contract', false)" jhiTranslate="entity.action.addblob" />
+          </div>
+          <input type="hidden" class="form-control" name="contract" id="field_contract" formControlName="contract" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="contractContentType"
+            id="field_contractContentType"
+            formControlName="contractContentType"
+          />
+        </div>
+
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.status" for="field_status">Status</label> -->
+          <select class="form-control" name="status" formControlName="status" id="field_status">
+            <option value="ACTIVE">{{ 'tmsV1ApplicationApp.ToggleStatus.ACTIVE' | translate }}</option>
+            <option value="INACTIVE">{{ 'tmsV1ApplicationApp.ToggleStatus.INACTIVE' | translate }}</option>
+          </select>
+        </div>
+     </div>
+
+     <div class="my-2">
+          <span class="lable_name">Preffred Currency Payterms</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.preffredCurrency" for="field_preffredCurrency"
+            >Preffred Currency</label
+          > -->
+          <select class="form-control" name="preffredCurrency" formControlName="preffredCurrency" id="field_preffredCurrency">
+            <option value="USD">{{ 'tmsV1ApplicationApp.CURRENCY.USD' | translate }}</option>
+            <option value="CAD">{{ 'tmsV1ApplicationApp.CURRENCY.CAD' | translate }}</option>
+            <option value="INR">{{ 'tmsV1ApplicationApp.CURRENCY.INR' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.payterms" for="field_payterms">Payterms</label> -->
+          <input type="text" class="form-control" name="payterms" placeholder="Amount" id="field_payterms" formControlName="payterms" />
+        </div>
+     </div>
+<div class="my-2">
+          <span class="lable_name">Time Zone</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.timeZone" for="field_timeZone">Time Zone</label> -->
+          <div class="d-flex">
+            <input
+              id="field_timeZone"
+              type="datetime-local"
+              class="form-control"
+              name="timeZone"
+              formControlName="timeZone"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+<div class="my-2">
+          <span class="lable_name">Time Zone</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.createdDate" for="field_createdDate"
+            >Created Date</label
+          > -->
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              type="datetime-local"
+              class="form-control"
+              placeholder="Created Date"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+<!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.createdBy" for="field_createdBy">Created By</label> -->
+          <input type="text" class="form-control" name="createdBy" id="field_createdBy" placeholder="Created By" formControlName="createdBy" />
+</div>
+          
+        </div>
+<div class="my-2">
+          <span class="lable_name">Last Modified Date</span>
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastModifiedDate" for="field_lastModifiedDate"
+            >Last Modified Date</label
+          > -->
+          <div class="d-flex">
+            <input
+              id="field_lastModifiedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastModifiedDate"
+              formControlName="lastModifiedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <!-- <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.customer.lastModifiedBy" for="field_lastModifiedBy"
+            >Last Modified By</label
+          > -->
+          <input type="text" class="form-control" name="lastModifiedBy" placeholder="Last Modified By" id="field_lastModifiedBy" formControlName="lastModifiedBy" />
+        </div>
+</div>
+<div class="my-2">
+          <span class="lable_name">Charge</span>
+        <div class="form-group">
+          <!-- <label jhiTranslate="tmsV1ApplicationApp.customer.charge" for="field_charges">Charge</label> -->
+          <select class="form-control" id="field_charges" multiple name="charges" formControlName="charges">
+            <option
+              [ngValue]="getSelected(editForm.get('charges')!.value, productItemOption)"
+              *ngFor="let productItemOption of productitems; trackBy: trackById"
+            >
+              {{ productItemOption.itemName }}</option
+            >
+          </select>
+        </div>
+      </div>
+<div class="my-2">
+          <span class="lable_name"></span>
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
     </div>
+
+    </form>
+  </div>
 </div>

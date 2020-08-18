@@ -16,7 +16,8 @@ import { ProductItemService } from 'app/entities/product-item/product-item.servi
 
 @Component({
   selector: 'jhi-customer-update',
-  templateUrl: './customer-update.component.html'
+  templateUrl: './customer-update.component.html',
+  styleUrls: ['./customer-update.component.scss']
 })
 export class CustomerUpdateComponent implements OnInit {
   isSaving = false;
