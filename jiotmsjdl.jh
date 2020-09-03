@@ -241,8 +241,8 @@ entity InvoiceItem {
 entity Container {
     number String ,
     tripType TripType ,
-    pickup Instant,
-	drop Instant,
+    pickup LocalDate,
+	drop LocalDate,
     containerSize  SizeEnum ,    
     createdDate Instant ,
     createdBy String ,

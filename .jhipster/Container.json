@@ -12,11 +12,11 @@
         },
         {
             "fieldName": "pickup",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "drop",
-            "fieldType": "Instant"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "containerSize",

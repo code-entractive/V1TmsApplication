@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption, Search } from 'app/shared/util/request-util';
 import { IContainer } from 'app/shared/model/container.model';
@@ -58,8 +59,8 @@ export class ContainerService {
 
   protected convertDateFromClient(container: IContainer): IContainer {
     const copy: IContainer = Object.assign({}, container, {
-      pickup: container.pickup && container.pickup.isValid() ? container.pickup.toJSON() : undefined,
-      drop: container.drop && container.drop.isValid() ? container.drop.toJSON() : undefined,
+      pickup: container.pickup && container.pickup.isValid() ? container.pickup.format(DATE_FORMAT) : undefined,
+      drop: container.drop && container.drop.isValid() ? container.drop.format(DATE_FORMAT) : undefined,
       createdDate: container.createdDate && container.createdDate.isValid() ? container.createdDate.toJSON() : undefined,
       lastModifiedDate: container.lastModifiedDate && container.lastModifiedDate.isValid() ? container.lastModifiedDate.toJSON() : undefined
     });

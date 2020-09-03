@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import * as moment from 'moment';
-import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT, DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { ContainerService } from 'app/entities/container/container.service';
 import { IContainer, Container } from 'app/shared/model/container.model';
 import { TripType } from 'app/shared/model/enumerations/trip-type.model';
@@ -44,8 +44,8 @@ describe('Service Tests', () => {
       it('should find an element', () => {
         const returnedFromService = Object.assign(
           {
-            pickup: currentDate.format(DATE_TIME_FORMAT),
-            drop: currentDate.format(DATE_TIME_FORMAT),
+            pickup: currentDate.format(DATE_FORMAT),
+            drop: currentDate.format(DATE_FORMAT),
             createdDate: currentDate.format(DATE_TIME_FORMAT),
             lastModifiedDate: currentDate.format(DATE_TIME_FORMAT)
           },
@@ -63,8 +63,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            pickup: currentDate.format(DATE_TIME_FORMAT),
-            drop: currentDate.format(DATE_TIME_FORMAT),
+            pickup: currentDate.format(DATE_FORMAT),
+            drop: currentDate.format(DATE_FORMAT),
             createdDate: currentDate.format(DATE_TIME_FORMAT),
             lastModifiedDate: currentDate.format(DATE_TIME_FORMAT)
           },
@@ -93,8 +93,8 @@ describe('Service Tests', () => {
           {
             number: 'BBBBBB',
             tripType: 'BBBBBB',
-            pickup: currentDate.format(DATE_TIME_FORMAT),
-            drop: currentDate.format(DATE_TIME_FORMAT),
+            pickup: currentDate.format(DATE_FORMAT),
+            drop: currentDate.format(DATE_FORMAT),
             containerSize: 'BBBBBB',
             createdDate: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',
@@ -126,8 +126,8 @@ describe('Service Tests', () => {
           {
             number: 'BBBBBB',
             tripType: 'BBBBBB',
-            pickup: currentDate.format(DATE_TIME_FORMAT),
-            drop: currentDate.format(DATE_TIME_FORMAT),
+            pickup: currentDate.format(DATE_FORMAT),
+            drop: currentDate.format(DATE_FORMAT),
             containerSize: 'BBBBBB',
             createdDate: currentDate.format(DATE_TIME_FORMAT),
             createdBy: 'BBBBBB',

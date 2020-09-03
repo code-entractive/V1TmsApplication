@@ -22,10 +22,10 @@
             <column name="trip_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="pickup" type="datetime">
+            <column name="pickup" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="jhi_drop" type="datetime">
+            <column name="jhi_drop" type="date">
                 <constraints nullable="true" />
             </column>
             <column name="container_size" type="varchar(255)">
@@ -54,8 +54,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="container" columnName="pickup" columnDataType="datetime"/>
-        <dropDefaultValue tableName="container" columnName="jhi_drop" columnDataType="datetime"/>
         <dropDefaultValue tableName="container" columnName="created_date" columnDataType="datetime"/>
         <dropDefaultValue tableName="container" columnName="last_modified_date" columnDataType="datetime"/>
     </changeSet>
@@ -81,8 +79,8 @@
             <column name="id" type="numeric"/>
             <column name="number" type="string"/>
             <column name="trip_type" type="string"/>
-            <column name="pickup" type="datetime"/>
-            <column name="jhi_drop" type="datetime"/>
+            <column name="pickup" type="date"/>
+            <column name="jhi_drop" type="date"/>
             <column name="container_size" type="string"/>
             <column name="created_date" type="datetime"/>
             <column name="created_by" type="string"/>

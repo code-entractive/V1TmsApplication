@@ -27,15 +27,21 @@
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.container.pickup" for="field_pickup">Pickup</label>
-                    <div class="d-flex">
-                        <input id="field_pickup" type="datetime-local" class="form-control" name="pickup" formControlName="pickup" placeholder="YYYY-MM-DD HH:mm"/>
+                    <div class="input-group">
+                        <input id="field_pickup" type="text" class="form-control" name="pickup" ngbDatepicker #pickupDp="ngbDatepicker" formControlName="pickup"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="pickupDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.container.drop" for="field_drop">Drop</label>
-                    <div class="d-flex">
-                        <input id="field_drop" type="datetime-local" class="form-control" name="drop" formControlName="drop" placeholder="YYYY-MM-DD HH:mm"/>
+                    <div class="input-group">
+                        <input id="field_drop" type="text" class="form-control" name="drop" ngbDatepicker #dropDp="ngbDatepicker" formControlName="drop"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dropDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
                     </div>
                 </div>
 

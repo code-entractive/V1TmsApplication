@@ -10,6 +10,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.Instant;
+import java.time.LocalDate;
 
 import com.tms.v1.domain.enumeration.TripType;
 
@@ -38,10 +39,10 @@ public class Container implements Serializable {
     private TripType tripType;
 
     @Column(name = "pickup")
-    private Instant pickup;
+    private LocalDate pickup;
 
     @Column(name = "jhi_drop")
-    private Instant drop;
+    private LocalDate drop;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "container_size")
@@ -68,7 +69,7 @@ public class Container implements Serializable {
     private Location dropLocation;
 
     @ManyToOne
-    @JsonIgnoreProperties(value= {"containers"}, allowSetters = true)
+    @JsonIgnoreProperties("containers")
     private Trip trip;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -106,29 +107,29 @@ public class Container implements Serializable {
         this.tripType = tripType;
     }
 
-    public Instant getPickup() {
+    public LocalDate getPickup() {
         return pickup;
     }
 
-    public Container pickup(Instant pickup) {
+    public Container pickup(LocalDate pickup) {
         this.pickup = pickup;
         return this;
     }
 
-    public void setPickup(Instant pickup) {
+    public void setPickup(LocalDate pickup) {
         this.pickup = pickup;
     }
 
-    public Instant getDrop() {
+    public LocalDate getDrop() {
         return drop;
     }
 
-    public Container drop(Instant drop) {
+    public Container drop(LocalDate drop) {
         this.drop = drop;
         return this;
     }
 
-    public void setDrop(Instant drop) {
+    public void setDrop(LocalDate drop) {
         this.drop = drop;
     }
 

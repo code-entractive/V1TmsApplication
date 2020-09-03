@@ -61,8 +61,8 @@
                     <td><a [routerLink]="['/container', container.id, 'view']">{{ container.id }}</a></td>
                     <td>{{ container.number }}</td>
                     <td jhiTranslate="{{ 'tmsV1ApplicationApp.TripType.' + container.tripType }}">{{ container.tripType }}</td>
-                    <td>{{ container.pickup | date:'medium' }}</td>
-                    <td>{{ container.drop | date:'medium' }}</td>
+                    <td>{{ container.pickup | date:'mediumDate' }}</td>
+                    <td>{{ container.drop | date:'mediumDate' }}</td>
                     <td jhiTranslate="{{ 'tmsV1ApplicationApp.SizeEnum.' + container.containerSize }}">{{ container.containerSize }}</td>
                     <td>{{ container.createdDate | date:'medium' }}</td>
                     <td>{{ container.createdBy }}</td>

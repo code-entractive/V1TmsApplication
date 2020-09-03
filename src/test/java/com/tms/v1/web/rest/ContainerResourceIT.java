@@ -19,7 +19,9 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
@@ -49,11 +51,11 @@ public class ContainerResourceIT {
     private static final TripType DEFAULT_TRIP_TYPE = TripType.PICKUP;
     private static final TripType UPDATED_TRIP_TYPE = TripType.RETURN;
 
-    private static final Instant DEFAULT_PICKUP = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_PICKUP = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_PICKUP = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_PICKUP = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Instant DEFAULT_DROP = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DROP = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final LocalDate DEFAULT_DROP = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DROP = LocalDate.now(ZoneId.systemDefault());
 
     private static final SizeEnum DEFAULT_CONTAINER_SIZE = SizeEnum.C53;
     private static final SizeEnum UPDATED_CONTAINER_SIZE = SizeEnum.C43;

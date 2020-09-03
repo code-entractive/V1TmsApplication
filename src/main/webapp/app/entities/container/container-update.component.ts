@@ -24,6 +24,8 @@ export class ContainerUpdateComponent implements OnInit {
   isSaving = false;
   locations: ILocation[] = [];
   trips: ITrip[] = [];
+  pickupDp: any;
+  dropDp: any;
 
   editForm = this.fb.group({
     id: [],
@@ -53,8 +55,6 @@ export class ContainerUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ container }) => {
       if (!container.id) {
         const today = moment().startOf('day');
-        container.pickup = today;
-        container.drop = today;
         container.createdDate = today;
         container.lastModifiedDate = today;
       }
@@ -72,8 +72,8 @@ export class ContainerUpdateComponent implements OnInit {
       id: container.id,
       number: container.number,
       tripType: container.tripType,
-      pickup: container.pickup ? container.pickup.format(DATE_TIME_FORMAT) : null,
-      drop: container.drop ? container.drop.format(DATE_TIME_FORMAT) : null,
+      pickup: container.pickup,
+      drop: container.drop,
       containerSize: container.containerSize,
       createdDate: container.createdDate ? container.createdDate.format(DATE_TIME_FORMAT) : null,
       createdBy: container.createdBy,
@@ -105,8 +105,8 @@ export class ContainerUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       number: this.editForm.get(['number'])!.value,
       tripType: this.editForm.get(['tripType'])!.value,
-      pickup: this.editForm.get(['pickup'])!.value ? moment(this.editForm.get(['pickup'])!.value, DATE_TIME_FORMAT) : undefined,
-      drop: this.editForm.get(['drop'])!.value ? moment(this.editForm.get(['drop'])!.value, DATE_TIME_FORMAT) : undefined,
+      pickup: this.editForm.get(['pickup'])!.value,
+      drop: this.editForm.get(['drop'])!.value,
       containerSize: this.editForm.get(['containerSize'])!.value,
       createdDate: this.editForm.get(['createdDate'])!.value
         ? moment(this.editForm.get(['createdDate'])!.value, DATE_TIME_FORMAT)
