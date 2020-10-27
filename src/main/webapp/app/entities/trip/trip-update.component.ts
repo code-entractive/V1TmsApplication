@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
+import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 
 import { ITrip, Trip } from 'app/shared/model/trip.model';
@@ -117,7 +118,7 @@ export class TripUpdateComponent implements OnInit {
           id: null,
           pickup: moment()
             .startOf('day')
-            .format(DATE_TIME_FORMAT),
+            .format(DATE_FORMAT),
           size: 207
         };
         this.dynamicArray.push(this.newDynamic);
@@ -281,10 +282,9 @@ export class TripUpdateComponent implements OnInit {
 
   addRow(index: number): any {
     this.indexSize = index + 1;
-    // this.newDynamic = { id : 2 , itemName: this.dynamicArray.length + 1, description: 'SFO TO DEL', price: '20', total: '40' };
-    // const today = moment().format(DATE_TIME_FORMAT) ;
-    // this.dynamicArray.push({ number: '', pickup:  moment().format(DATE_TIME_FORMAT) ,drop: new moment().format(DATE_TIME_FORMAT)  , lastModifiedBy: '' });
-    //  this.calculateTotal();
+    const today = moment().format(DATE_FORMAT);
+    //  this.dynamicArray.push({ number: '', pickup: moment(today) ,drop: moment(today)  , pickupLocation: , dropLocation :null });
+    this.calculateTotal();
     return true;
   }
 
@@ -304,5 +304,9 @@ export class TripUpdateComponent implements OnInit {
     }
   }
 
-  calculateTotal(): any {}
+  calculateTotal(): any {
+    alert(' some thing happend');
+  }
+
+  CoveredByChanged(): any {}
 }

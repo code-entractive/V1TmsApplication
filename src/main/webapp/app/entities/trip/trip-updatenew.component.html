@@ -1,95 +1,175 @@
+
+
+
 <div class="row justify-content-center">
-    <div class="col-10">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-trip-heading" jhiTranslate="tmsV1ApplicationApp.trip.home.createOrEditLabel">Create or edit a Trip</h2>
+	<div class="col-10">
+		<form name="editForm" role="form" novalidate (ngSubmit)="save()"
+			[formGroup]="editForm">
+			<h2 id="jhi-trip-heading"
+				jhiTranslate="tmsV1ApplicationApp.trip.home.createOrEditLabel">Create
+				or edit a Trip</h2>
 
-            <div>
-            
-        <!--    <jhi-trip-wizard> </jhi-trip-wizard> -->
-                <jhi-alert-error></jhi-alert-error>
+			<div>
 
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
+				<!--    <jhi-trip-wizard> </jhi-trip-wizard> -->
+				<jhi-alert-error></jhi-alert-error>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.customTripNumber" for="field_customTripNumber">Custom Trip Number</label>
-                    <input type="text" class="form-control" name="customTripNumber" id="field_customTripNumber"
-                           formControlName="customTripNumber"/>
-                </div>
+				<div class="form-group" [hidden]="!editForm.get('id')!.value">
+					<label for="id" jhiTranslate="global.field.id">ID</label> <input
+						type="text" class="form-control" id="id" name="id"
+						formControlName="id" readonly />
+				</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.description" for="field_description">Description</label>
-                    <input type="text" class="form-control" name="description" id="field_description"
-                           formControlName="description"/>
-                </div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.customer"
+						for="field_customer">Customer</label> <select class="form-control"
+						id="field_customer" name="customer" formControlName="customer">
+						<option [ngValue]="null"></option>
+						<option
+							[ngValue]="customerOption.id === editForm.get('customer')!.value?.id ? editForm.get('customer')!.value : customerOption"
+							*ngFor="let customerOption of customers; trackBy: trackById">{{
+							customerOption.email }}</option>
+					</select>
+				</div>
+				<br />
+				<hr>
 
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.customTripNumber"
+						for="field_customTripNumber">Custom Trip Number</label> <input
+						type="text" class="form-control" name="customTripNumber"
+						id="field_customTripNumber" formControlName="customTripNumber" />
+				</div>
+
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.description"
+						for="field_description">Description</label> <input type="text"
+						class="form-control" name="description" id="field_description"
+						formControlName="description" />
+				</div>
+				<!-- 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.tripType" for="field_tripType">Trip Type</label>
                     <select class="form-control" name="tripType" formControlName="tripType" id="field_tripType">
                         <option value="PICKUP">{{ 'tmsV1ApplicationApp.TripType.PICKUP' | translate }}</option>
                         <option value="RETURN">{{ 'tmsV1ApplicationApp.TripType.RETURN' | translate }}</option>
                     </select>
-                </div>
-                
-                <br/>
-<hr>
+                </div> -->
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.shipmentNumber" for="field_shipmentNumber">Shipment Number</label>
-                    <input type="text" class="form-control" name="shipmentNumber" id="field_shipmentNumber"
-                           formControlName="shipmentNumber"/>
-                </div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.loadType"
+						for="field_loadType">Load Type</label> <select
+						class="form-control" name="loadType" formControlName="loadType"
+						id="field_loadType">
+						<option value="REEFER">{{
+							'tmsV1ApplicationApp.LoadType.REEFER' | translate }}</option>
+						<option value="FLATBED">{{
+							'tmsV1ApplicationApp.LoadType.FLATBED' | translate }}</option>
+						<option value="LTL">{{ 'tmsV1ApplicationApp.LoadType.LTL'
+							| translate }}</option>
+						<option value="DRYVAN">{{
+							'tmsV1ApplicationApp.LoadType.DRYVAN' | translate }}</option>
+						<option value="FLAT_DECK">{{
+							'tmsV1ApplicationApp.LoadType.FLAT_DECK' | translate }}</option>
+						<option value="CONTAINER">{{
+							'tmsV1ApplicationApp.LoadType.CONTAINER' | translate }}</option>
+						<option value="POWERONLY">{{
+							'tmsV1ApplicationApp.LoadType.POWERONLY' | translate }}</option>
+					</select>
+				</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.orderNumber" for="field_orderNumber">Order Number</label>
-                    <input type="text" class="form-control" name="orderNumber" id="field_orderNumber"
-                           formControlName="orderNumber"/>
-                </div>
-<br/>
-<hr>
+				<br />
+				<hr>
 
-    <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.customer" for="field_customer">Customer</label>
-                    <select class="form-control" id="field_customer" name="customer" formControlName="customer">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="customerOption.id === editForm.get('customer')!.value?.id ? editForm.get('customer')!.value : customerOption" *ngFor="let customerOption of customers; trackBy: trackById">{{ customerOption.email }}</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.shipmentNumber"
+						for="field_shipmentNumber">Shipment Number</label> <input
+						type="text" class="form-control" name="shipmentNumber"
+						id="field_shipmentNumber" formControlName="shipmentNumber" />
+				</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.driver" for="field_driver">Driver</label>
-                    <select class="form-control" id="field_driver" name="driver" formControlName="driver">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="driverOption.id === editForm.get('driver')!.value?.id ? editForm.get('driver')!.value : driverOption" *ngFor="let driverOption of drivers; trackBy: trackById">{{ driverOption.firstName }}</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.orderNumber"
+						for="field_orderNumber">Order Number</label> <input type="text"
+						class="form-control" name="orderNumber" id="field_orderNumber"
+						formControlName="orderNumber" />
+				</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.equipment" for="field_equipment">Equipment</label>
-                    <select class="form-control" id="field_equipment" name="equipment" formControlName="equipment">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="equipmentOption.id === editForm.get('equipment')!.value?.id ? editForm.get('equipment')!.value : equipmentOption" *ngFor="let equipmentOption of equipment; trackBy: trackById">{{ equipmentOption.id }}</option>
-                    </select>
-                </div>
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.bol" for="field_bol">Bol</label>
+					<input type="text" class="form-control" name="bol" id="field_bol"
+						formControlName="bol" />
+				</div>
+				<br />
+				<hr>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.carrier" for="field_carrier">Carrier</label>
-                    <select class="form-control" id="field_carrier" name="carrier" formControlName="carrier">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="carrierOption.id === editForm.get('carrier')!.value?.id ? editForm.get('carrier')!.value : carrierOption" *ngFor="let carrierOption of carriers; trackBy: trackById">{{ carrierOption.company }}</option>
-                    </select>
-                </div>
-            </div>
-            
-            <br/>
+
+
+				<div class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.coveredBy"
+						for="field_coveredBy">Covered By</label> 
+						<select   (change)="CoveredByChanged()"
+						class="form-control" name="coveredBy" formControlName="coveredBy"
+						id="field_coveredBy">
+						<option value="CompanyDriver">{{
+							'tmsV1ApplicationApp.COVEREDBY.CompanyDriver' | translate }}</option>
+						<option value="OwnerOperator">{{
+							'tmsV1ApplicationApp.COVEREDBY.OwnerOperator' | translate }}</option>
+					</select>
+				</div>
+
+				<div *ngIf="this.editForm.get(['coveredBy'])!.value === 'CompanyDriver'" class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.driver" for="field_driver">Driver</label>
+					<select class="form-control" id="field_driver" name="driver"
+						formControlName="driver">
+						<option [ngValue]="null"></option>
+						<option
+							[ngValue]="driverOption.id === editForm.get('driver')!.value?.id ? editForm.get('driver')!.value : driverOption"
+							*ngFor="let driverOption of drivers; trackBy: trackById">{{
+							driverOption.firstName }}</option>
+					</select>
+				</div>
+
+				<div *ngIf="this.editForm.get(['coveredBy'])!.value === 'CompanyDriver'" class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.equipment"
+						for="field_equipment">Equipment</label> <select
+						class="form-control" id="field_equipment" name="equipment"
+						formControlName="equipment">
+						<option [ngValue]="null"></option>
+						<option
+							[ngValue]="equipmentOption.id === editForm.get('equipment')!.value?.id ? editForm.get('equipment')!.value : equipmentOption"
+							*ngFor="let equipmentOption of equipment; trackBy: trackById">{{
+							equipmentOption.id }}</option>
+					</select>
+				</div>
+
+				<div  *ngIf="this.editForm.get(['coveredBy'])!.value === 'OwnerOperator'" id="carrier_div" class="form-group">
+					<label class="form-control-label"
+						jhiTranslate="tmsV1ApplicationApp.trip.carrier"
+						for="field_carrier">Carrier</label> <select class="form-control"
+						id="field_carrier" name="carrier" formControlName="carrier">
+						<option [ngValue]="null"></option>
+						<option
+							[ngValue]="carrierOption.id === editForm.get('carrier')!.value?.id ? editForm.get('carrier')!.value : carrierOption"
+							*ngFor="let carrierOption of carriers; trackBy: trackById">{{
+							carrierOption.company }}</option>
+					</select>
+				</div>
+			</div>
+
+			<!--             <br/>
              <hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.bol" for="field_bol">Bol</label>
-                    <input type="text" class="form-control" name="bol" id="field_bol"
-                           formControlName="bol"/>
-                </div>
+             
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.pickup" for="field_pickup">Pickup</label>
@@ -110,155 +190,194 @@
                         </span>
                     </div>
                 </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.currentLocation" for="field_currentLocation">Current Location</label>
-                    <input type="text" class="form-control" name="currentLocation" id="field_currentLocation"
-                           formControlName="currentLocation"/>
-                </div>
+ -->
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.currentLocation"
+					for="field_currentLocation">Current Location</label> <input
+					type="text" class="form-control" name="currentLocation"
+					id="field_currentLocation" formControlName="currentLocation" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.status" for="field_status">Status</label>
-                    <select class="form-control" name="status" formControlName="status" id="field_status">
-                        <option value="CREATED">{{ 'tmsV1ApplicationApp.StatusEnum.CREATED' | translate }}</option>
-                        <option value="PICKEDUP">{{ 'tmsV1ApplicationApp.StatusEnum.PICKEDUP' | translate }}</option>
-                        <option value="ONROAD">{{ 'tmsV1ApplicationApp.StatusEnum.ONROAD' | translate }}</option>
-                        <option value="DELIVERED">{{ 'tmsV1ApplicationApp.StatusEnum.DELIVERED' | translate }}</option>
-                        <option value="INVOICED">{{ 'tmsV1ApplicationApp.StatusEnum.INVOICED' | translate }}</option>
-                        <option value="COMPLETED">{{ 'tmsV1ApplicationApp.StatusEnum.COMPLETED' | translate }}</option>
-                    </select>
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.status" for="field_status">Status</label>
+				<select class="form-control" name="status" formControlName="status"
+					id="field_status">
+					<option value="CREATED">{{
+						'tmsV1ApplicationApp.StatusEnum.CREATED' | translate }}</option>
+					<option value="PICKEDUP">{{
+						'tmsV1ApplicationApp.StatusEnum.PICKEDUP' | translate }}</option>
+					<option value="ONROAD">{{
+						'tmsV1ApplicationApp.StatusEnum.ONROAD' | translate }}</option>
+					<option value="DELIVERED">{{
+						'tmsV1ApplicationApp.StatusEnum.DELIVERED' | translate }}</option>
+					<option value="INVOICED">{{
+						'tmsV1ApplicationApp.StatusEnum.INVOICED' | translate }}</option>
+					<option value="COMPLETED">{{
+						'tmsV1ApplicationApp.StatusEnum.COMPLETED' | translate }}</option>
+				</select>
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.detention" for="field_detention">Detention</label>
-                    <input type="number" class="form-control" name="detention" id="field_detention"
-                           formControlName="detention"/>
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.detention"
+					for="field_detention">Detention</label> <input type="number"
+					class="form-control" name="detention" id="field_detention"
+					formControlName="detention" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.chasisInTime" for="field_chasisInTime">Chasis In Time</label>
-                    <div class="d-flex">
-                        <input id="field_chasisInTime" type="datetime-local" class="form-control" name="chasisInTime" formControlName="chasisInTime" placeholder="YYYY-MM-DD HH:mm"/>
-                    </div>
-                </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.orderDocument" for="field_orderDocument">Order Document</label>
-                    <div>
-                        <div *ngIf="editForm.get('orderDocument')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('orderDocumentContentType')!.value, editForm.get('orderDocument')!.value)" jhiTranslate="entity.action.open">open</a><br>
-                            <span class="pull-left">{{ editForm.get('orderDocumentContentType')!.value }}, {{ byteSize(editForm.get('orderDocument')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({orderDocument: null});editForm.patchValue({orderDocumentContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_orderDocument" (change)="setFileData($event, 'orderDocument', false)" jhiTranslate="entity.action.addblob"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="orderDocument" id="field_orderDocument"
-                           formControlName="orderDocument"/>
-                    <input type="hidden" class="form-control" name="orderDocumentContentType" id="field_orderDocumentContentType"
-                           formControlName="orderDocumentContentType" />
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.chasisInTime"
+					for="field_chasisInTime">Chasis In Time</label>
+				<div class="d-flex">
+					<input id="field_chasisInTime" type="datetime-local"
+						class="form-control" name="chasisInTime"
+						formControlName="chasisInTime" placeholder="YYYY-MM-DD HH:mm" />
+				</div>
+			</div>
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.orderDocument"
+					for="field_orderDocument">Order Document</label>
+				<div>
+					<div *ngIf="editForm.get('orderDocument')!.value"
+						class="form-text text-danger clearfix">
+						<a class="pull-left"
+							(click)="openFile(editForm.get('orderDocumentContentType')!.value, editForm.get('orderDocument')!.value)"
+							jhiTranslate="entity.action.open">open</a><br> <span
+							class="pull-left">{{
+							editForm.get('orderDocumentContentType')!.value }}, {{
+							byteSize(editForm.get('orderDocument')!.value) }}</span>
+						<button type="button"
+							(click)="editForm.patchValue({orderDocument: null});editForm.patchValue({orderDocumentContentType: null});"
+							class="btn btn-secondary btn-xs pull-right">
+							<fa-icon icon="times"></fa-icon>
+						</button>
+					</div>
+					<input type="file" id="file_orderDocument"
+						(change)="setFileData($event, 'orderDocument', false)"
+						jhiTranslate="entity.action.addblob" />
+				</div>
+				<input type="hidden" class="form-control" name="orderDocument"
+					id="field_orderDocument" formControlName="orderDocument" /> <input
+					type="hidden" class="form-control" name="orderDocumentContentType"
+					id="field_orderDocumentContentType"
+					formControlName="orderDocumentContentType" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.pod" for="field_pod">Pod</label>
-                    <div>
-                        <div *ngIf="editForm.get('pod')!.value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('podContentType')!.value, editForm.get('pod')!.value)" jhiTranslate="entity.action.open">open</a><br>
-                            <span class="pull-left">{{ editForm.get('podContentType')!.value }}, {{ byteSize(editForm.get('pod')!.value) }}</span>
-                            <button type="button" (click)="editForm.patchValue({pod: null});editForm.patchValue({podContentType: null});"
-                                    class="btn btn-secondary btn-xs pull-right">
-                                <fa-icon icon="times"></fa-icon>
-                            </button>
-                        </div>
-                        <input type="file" id="file_pod" (change)="setFileData($event, 'pod', false)" jhiTranslate="entity.action.addblob"/>
-                    </div>
-                    <input type="hidden" class="form-control" name="pod" id="field_pod"
-                           formControlName="pod"/>
-                    <input type="hidden" class="form-control" name="podContentType" id="field_podContentType"
-                           formControlName="podContentType" />
-                </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.hazmat" for="field_hazmat">Hazmat</label>
-                    <input type="checkbox" class="form-control" name="hazmat" id="field_hazmat"
-                           formControlName="hazmat"/>
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.pod" for="field_pod">Pod</label>
+				<div>
+					<div *ngIf="editForm.get('pod')!.value"
+						class="form-text text-danger clearfix">
+						<a class="pull-left"
+							(click)="openFile(editForm.get('podContentType')!.value, editForm.get('pod')!.value)"
+							jhiTranslate="entity.action.open">open</a><br> <span
+							class="pull-left">{{ editForm.get('podContentType')!.value
+							}}, {{ byteSize(editForm.get('pod')!.value) }}</span>
+						<button type="button"
+							(click)="editForm.patchValue({pod: null});editForm.patchValue({podContentType: null});"
+							class="btn btn-secondary btn-xs pull-right">
+							<fa-icon icon="times"></fa-icon>
+						</button>
+					</div>
+					<input type="file" id="file_pod"
+						(change)="setFileData($event, 'pod', false)"
+						jhiTranslate="entity.action.addblob" />
+				</div>
+				<input type="hidden" class="form-control" name="pod" id="field_pod"
+					formControlName="pod" /> <input type="hidden" class="form-control"
+					name="podContentType" id="field_podContentType"
+					formControlName="podContentType" />
+			</div>
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.hazmat" for="field_hazmat">Hazmat</label>
+				<input type="checkbox" class="form-control" name="hazmat"
+					id="field_hazmat" formControlName="hazmat" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.refrigerated" for="field_refrigerated">Refrigerated</label>
-                    <input type="checkbox" class="form-control" name="refrigerated" id="field_refrigerated"
-                           formControlName="refrigerated"/>
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.refrigerated"
+					for="field_refrigerated">Refrigerated</label> <input
+					type="checkbox" class="form-control" name="refrigerated"
+					id="field_refrigerated" formControlName="refrigerated" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.liftgate" for="field_liftgate">Liftgate</label>
-                    <input type="checkbox" class="form-control" name="liftgate" id="field_liftgate"
-                           formControlName="liftgate"/>
-                </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.recievedBy" for="field_recievedBy">Recieved By</label>
-                    <input type="text" class="form-control" name="recievedBy" id="field_recievedBy"
-                           formControlName="recievedBy"/>
-                </div>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.liftgate"
+					for="field_liftgate">Liftgate</label> <input type="checkbox"
+					class="form-control" name="liftgate" id="field_liftgate"
+					formControlName="liftgate" />
+			</div>
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.recievedBy"
+					for="field_recievedBy">Recieved By</label> <input type="text"
+					class="form-control" name="recievedBy" id="field_recievedBy"
+					formControlName="recievedBy" />
+			</div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.coveredBy" for="field_coveredBy">Covered By</label>
-                    <select class="form-control" name="coveredBy" formControlName="coveredBy" id="field_coveredBy">
-                        <option value="CompanyDriver">{{ 'tmsV1ApplicationApp.COVEREDBY.CompanyDriver' | translate }}</option>
-                        <option value="OwnerOperator">{{ 'tmsV1ApplicationApp.COVEREDBY.OwnerOperator' | translate }}</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.loadType" for="field_loadType">Load Type</label>
-                    <select class="form-control" name="loadType" formControlName="loadType" id="field_loadType">
-                        <option value="REEFER">{{ 'tmsV1ApplicationApp.LoadType.REEFER' | translate }}</option>
-                        <option value="FLATBED">{{ 'tmsV1ApplicationApp.LoadType.FLATBED' | translate }}</option>
-                        <option value="LTL">{{ 'tmsV1ApplicationApp.LoadType.LTL' | translate }}</option>
-                        <option value="DRYVAN">{{ 'tmsV1ApplicationApp.LoadType.DRYVAN' | translate }}</option>
-                        <option value="FLAT_DECK">{{ 'tmsV1ApplicationApp.LoadType.FLAT_DECK' | translate }}</option>
-                        <option value="CONTAINER">{{ 'tmsV1ApplicationApp.LoadType.CONTAINER' | translate }}</option>
-                        <option value="POWERONLY">{{ 'tmsV1ApplicationApp.LoadType.POWERONLY' | translate }}</option>
-                    </select>
-                </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.containerSize" for="field_containerSize">Container Size</label>
-                    <select class="form-control" name="containerSize" formControlName="containerSize" id="field_containerSize">
-                        <option value="C53">{{ 'tmsV1ApplicationApp.SizeEnum.C53' | translate }}</option>
-                        <option value="C43">{{ 'tmsV1ApplicationApp.SizeEnum.C43' | translate }}</option>
-                        <option value="C20">{{ 'tmsV1ApplicationApp.SizeEnum.C20' | translate }}</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.numbersOfContainer" for="field_numbersOfContainer">Numbers Of Container</label>
-                    <input type="number" class="form-control" name="numbersOfContainer" id="field_numbersOfContainer"
-                           formControlName="numbersOfContainer"/>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.comments" for="field_comments">Comments</label>
-                    <input type="text" class="form-control" name="comments" id="field_comments"
-                           formControlName="comments"/>
-                </div>
-<br/>
-<hr>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.autoGenerateInvoice" for="field_autoGenerateInvoice">Auto Generate Invoice</label>
-                    <input type="checkbox" class="form-control" name="autoGenerateInvoice" id="field_autoGenerateInvoice"
-                           formControlName="autoGenerateInvoice"/>
-                </div>
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.containerSize"
+					for="field_containerSize">Container Size</label> <select
+					class="form-control" name="containerSize"
+					formControlName="containerSize" id="field_containerSize">
+					<option value="C53">{{ 'tmsV1ApplicationApp.SizeEnum.C53'
+						| translate }}</option>
+					<option value="C43">{{ 'tmsV1ApplicationApp.SizeEnum.C43'
+						| translate }}</option>
+					<option value="C20">{{ 'tmsV1ApplicationApp.SizeEnum.C20'
+						| translate }}</option>
+				</select>
+			</div>
 
-               <!--  <div class="form-group">
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.numbersOfContainer"
+					for="field_numbersOfContainer">Numbers Of Container</label> <input
+					type="number" class="form-control" name="numbersOfContainer"
+					id="field_numbersOfContainer" formControlName="numbersOfContainer" />
+			</div>
+
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.comments"
+					for="field_comments">Comments</label> <input type="text"
+					class="form-control" name="comments" id="field_comments"
+					formControlName="comments" />
+			</div>
+			<br />
+			<hr>
+			<div class="form-group">
+				<label class="form-control-label"
+					jhiTranslate="tmsV1ApplicationApp.trip.autoGenerateInvoice"
+					for="field_autoGenerateInvoice">Auto Generate Invoice</label> <input
+					type="checkbox" class="form-control" name="autoGenerateInvoice"
+					id="field_autoGenerateInvoice"
+					formControlName="autoGenerateInvoice" />
+			</div>
+
+			<!--  <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.createdDate" for="field_createdDate">Created Date</label>
                     <div class="d-flex">
                         <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
@@ -282,8 +401,7 @@
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.lastModifiedBy" for="field_lastModifiedBy">Last Modified By</label>
                     <input type="text" class="form-control" name="lastModifiedBy" id="field_lastModifiedBy"
                            formControlName="lastModifiedBy"/>
-                </div> -->
-
+                </div> 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="tmsV1ApplicationApp.trip.pickupLocation" for="field_pickupLocation">Pickup Location</label>
                     <select class="form-control" id="field_pickupLocation" name="pickupLocation" formControlName="pickupLocation">
@@ -299,48 +417,55 @@
                         <option [ngValue]="locationOption.id === editForm.get('dropLocation')!.value?.id ? editForm.get('dropLocation')!.value : locationOption" *ngFor="let locationOption of locations; trackBy: trackById">{{ locationOption.address }}</option>
                     </select>
                 </div>
+-->
 
-            
-            
-            <div class="form-group" style="width: 100%">
+
+
+			<div class="form-group" style="width: 100%">
 				<table class="table bordered-table">
-					<thead  class="thead-dark">
-						<tr  class="row">
-							<th >Action</th>
+					<thead class="thead-dark">
+						<tr class="row">
+							<th>Action</th>
 							<th class="col-sm-2">CONTAINER#</th>
 							<th class="col-sm-2">From</th>
 							<th class="col-sm-2">To</th>
 							<th class="col-sm-2">Pickup Date</th>
 							<th class="col-sm-2">Drop Date</th>
-							
+
 						</tr>
 					</thead>
 					<tbody style="line-height: 0.5;">
-						<tr class="row" *ngFor="let dynamic of dynamicArray ; let j = index">
+						<tr class="row"
+							*ngFor="let dynamic of dynamicArray ; let j = index">
 
 							<td (click)="deleteRow(j)"><fa-icon icon="trash-alt"></fa-icon></td>
-							
-								
-								<td  class="col-sm-2"> <input type="text"  [ngModelOptions]="{standalone: true}"
-									[(ngModel)]="dynamicArray[j].number"> </td>
-								
-						
-							<td   class="col-sm-2"> <input type="text" 
+
+
+							<td class="col-sm-2"><input type="text"
 								[ngModelOptions]="{standalone: true}"
-								[(ngModel)]="dynamicArray[j].pickup" (change)="calculateTotal()"
-								 />   </td>
-								
-								
-							<td  class="col-sm-2"> <input type="text" [ngModelOptions]="{standalone: true}"
-								placeholder="YYYY-MM-DD HH:mm"	[(ngModel)]="dynamicArray[j].pickup"></td>
-									
-							<td  class="col-sm-2"> <input type="text" [ngModelOptions]="{standalone: true}"
-								placeholder="YYYY-MM-DD HH:mm"	[(ngModel)]="dynamicArray[j].pickup"></td>
-										
-							<td  class="col-sm-2"> <input type="text" [ngModelOptions]="{standalone: true}"
-								placeholder="YYYY-MM-DD HH:mm"	[(ngModel)]="dynamicArray[j].drop"></td>
-									
-								
+								[(ngModel)]="dynamicArray[j].number"></td>
+
+
+							<td class="col-sm-2"><input type="text"
+								[ngModelOptions]="{standalone: true}"
+								[(ngModel)]="dynamicArray[j].pickup" (change)="calculateTotal()" />
+							</td>
+
+
+							<td class="col-sm-2"><input type="text"
+								[ngModelOptions]="{standalone: true}"
+								placeholder="YYYY-MM-DD HH:mm"
+								[(ngModel)]="dynamicArray[j].drop"></td>
+
+							<td class="col-sm-2"><input type="text"
+								[ngModelOptions]="{standalone: true}"
+								[(ngModel)]="dynamicArray[j].pickup"></td>
+
+							<td class="col-sm-2"><input type="text"
+								[ngModelOptions]="{standalone: true}"
+								[(ngModel)]="dynamicArray[j].drop"></td>
+
+
 						</tr>
 
 						<tr>
@@ -354,15 +479,19 @@
 
 			</div>
 
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
+			<div>
+				<button type="button" id="cancel-save" class="btn btn-secondary"
+					(click)="previousState()">
+					<fa-icon icon="ban"></fa-icon>
+					&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+				</button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
-    </div>
+				<button type="submit" id="save-entity"
+					[disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+					<fa-icon icon="save"></fa-icon>
+					&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+				</button>
+			</div>
+		</form>
+	</div>
 </div>
