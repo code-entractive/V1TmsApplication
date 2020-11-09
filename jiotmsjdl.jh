@@ -99,14 +99,9 @@ entity Trip  {
       createdBy String ,
       lastModifiedDate Instant ,
       lastModifiedBy String
-   
-     
+       
 	}
-    
-    
-    
-    
-    
+        
 
 entity Invoice {
      orderNo String,
@@ -369,7 +364,23 @@ entity Carrier {
    }
 
 
-
+entity Location {
+    company ,
+	address String,
+    streetAddress String,
+    city String,
+	stateProvince String,
+    country CountryEnum,
+	postalCode String
+    latitude Integer,
+    longitude Integer ,
+     createdDate Instant ,
+    createdBy String ,
+    lastModifiedDate Instant ,
+    lastModifiedBy String
+   
+	
+}
 
 entity Location {
 	address String,
@@ -381,6 +392,24 @@ entity Location {
     latitude Integer,
     longitude Integer ,
      createdDate Instant ,
+    createdBy String ,
+    lastModifiedDate Instant ,
+    lastModifiedBy String
+   
+	
+}
+
+entity Shipper {
+    company , 
+	address String,
+    streetAddress String,
+    city String,
+	stateProvince String,
+    country CountryEnum,
+	postalCode String
+    latitude Integer,
+    longitude Integer ,
+    createdDate Instant ,
     createdBy String ,
     lastModifiedDate Instant ,
     lastModifiedBy String

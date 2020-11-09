@@ -25,6 +25,10 @@ management:
       prometheus:
         enabled: false
 
+  health:
+    elasticsearch:
+      enabled: false
+
 spring:
   devtools:
     restart:
@@ -33,9 +37,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/TmsV1Application?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password:
+    url: jdbc:mysql://tmsv1application.ccbziaguek0w.us-east-1.rds.amazonaws.com:3306/TmsV1Application?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: tmsapp2nov
+    password: tmsapp2nov
     hikari:
       poolName: Hikari
       auto-commit: false

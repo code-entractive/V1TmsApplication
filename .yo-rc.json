@@ -35,7 +35,16 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "aws": {
+      "applicationName": "tms-v-1-application",
+      "environmentName": "tms-v-1-application-env",
+      "bucketName": "tms-v-1-application",
+      "instanceType": "t2.micro",
+      "awsRegion": "us-east-1",
+      "dbName": "TmsV1Application",
+      "dbInstanceClass": "db.t2.micro"
+    }
   },
   "git-provider": "GitHub",
   "git-company": "harjeet-me",

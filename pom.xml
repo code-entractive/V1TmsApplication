@@ -147,7 +147,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>test</scope>
+		<!-- 	<scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>io.springfox</groupId>
@@ -377,7 +377,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
-			<plugin>
+		<!-- 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
@@ -385,6 +385,7 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
+			 -->
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
@@ -401,7 +402,7 @@
 						-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
 					</jvmArguments>
 					<arguments>
-						<argument>--spring.profiles.active=dev</argument>
+						<argument>--spring.profiles.active=prod</argument>
 					</arguments>
 				</configuration>
 			</plugin>
@@ -454,6 +455,7 @@
 					<configuration>
 						<source>${java.version}</source>
 						<target>${java.version}</target>
+						  <skipTests>true</skipTests>
 						<annotationProcessorPaths>
 							<path>
 								<groupId>org.springframework.boot</groupId>
@@ -560,7 +562,7 @@
 						</includeOnlyProperties>
 					</configuration>
 				</plugin>
-				<plugin>
+			<!-- 	<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>${jacoco-maven-plugin.version}</version>
@@ -571,12 +573,12 @@
 								<goal>prepare-agent</goal>
 							</goals>
 							<configuration>
-								<!-- Sets the path to the file which contains the execution data. -->
+								Sets the path to the file which contains the execution data.
 								<destFile>${jacoco.utReportFile}</destFile>
 							</configuration>
 						</execution>
-						<!-- Ensures that the code coverage report for unit tests is created 
-							after unit tests have been run -->
+						Ensures that the code coverage report for unit tests is created 
+							after unit tests have been run
 						<execution>
 							<id>post-unit-test</id>
 							<phase>test</phase>
@@ -594,12 +596,12 @@
 								<goal>prepare-agent-integration</goal>
 							</goals>
 							<configuration>
-								<!-- Sets the path to the file which contains the execution data. -->
+								Sets the path to the file which contains the execution data.
 								<destFile>${jacoco.itReportFile}</destFile>
 							</configuration>
 						</execution>
-						<!-- Ensures that the code coverage report for integration tests is 
-							created after integration tests have been run -->
+						Ensures that the code coverage report for integration tests is 
+							created after integration tests have been run
 						<execution>
 							<id>post-integration-tests</id>
 							<phase>post-integration-test</phase>
@@ -612,7 +614,8 @@
 							</configuration>
 						</execution>
 					</executions>
-				</plugin>
+				</plugin> -->
+				
 				<plugin>
 					<groupId>com.google.cloud.tools</groupId>
 					<artifactId>jib-maven-plugin</artifactId>
@@ -797,12 +800,12 @@
 						</execution>
 					</executions>
 				</plugin>
-				<plugin>
+				<!-- <plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
-						<!-- Force alphabetical order to have a reproducible build -->
+						Force alphabetical order to have a reproducible build
 						<runOrder>alphabetical</runOrder>
 						<reportsDirectory>${junit.utReportFolder}</reportsDirectory>
 						<excludes>
@@ -810,16 +813,16 @@
 							<exclude>**/*IntTest*</exclude>
 						</excludes>
 					</configuration>
-				</plugin>
-				<plugin>
+				</plugin> -->
+				<!-- <plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-failsafe-plugin</artifactId>
 					<version>${maven-failsafe-plugin.version}</version>
 					<configuration>
-						<!-- Due to spring-boot repackage, without adding this property test 
-							classes are not found See https://github.com/spring-projects/spring-boot/issues/6254 -->
+						Due to spring-boot repackage, without adding this property test 
+							classes are not found See https://github.com/spring-projects/spring-boot/issues/6254
 						<classesDirectory>${project.build.outputDirectory}</classesDirectory>
-						<!-- Force alphabetical order to have a reproducible build -->
+						Force alphabetical order to have a reproducible build
 						<runOrder>alphabetical</runOrder>
 						<reportsDirectory>${junit.itReportFolder}</reportsDirectory>
 						<includes>
@@ -861,11 +864,11 @@
 					<configuration>
 						<mainClass>${start-class}</mainClass>
 						<fork>true</fork>
-						<!-- Enable the line below to have remote debugging of your application 
-							on port 5005 <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments> -->
+						Enable the line below to have remote debugging of your application 
+							on port 5005 <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
 					</configuration>
 
-				</plugin>
+				</plugin> -->
 				<!-- jhipster-needle-maven-add-plugin-management -->
 			</plugins>
 		</pluginManagement>
@@ -1024,7 +1027,7 @@
 									<arguments>install</arguments>
 								</configuration>
 							</execution>
-							<execution>
+							<!-- <execution>
 								<id>webpack build test</id>
 								<goals>
 									<goal>npm</goal>
@@ -1034,7 +1037,7 @@
 									<arguments>run webpack:test</arguments>
 									<npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
 								</configuration>
-							</execution>
+							</execution> -->
 							<execution>
 								<id>webpack build prod</id>
 								<goals>
